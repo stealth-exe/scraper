@@ -1,31 +1,33 @@
 # scraper
 
-A single-file Python tool that crawls a website, lists every **image, video, audio file and PDF** it finds, and lets you download them now or later.
+A single-file Python tool that crawls a website, lists every image, video, audio file and PDF it finds, and lets you download them immediately or later.
 
 ## Install
 
 ```bash
-pip install requests beautifulsoup4
+git clone https://github.com/stealth-exe/scraper.git
+cd scraper
+pip3 install -r requirements.txt
 ```
 
-Python 3.8+. Before first use, set your contact email in `USER_AGENT` at the top of `media_scraper.py`.
+Use python 3.8+ for best performance. Before first use, set your contact email in `USER_AGENT` at the top of `media_scraper.py`.
 
 ## Usage
 
-**Interactive wizard** (scan, review the list, choose what to download):
+**via wizard**
 
 ```bash
-python media_scraper.py
+python3 media_scraper.py
 ```
 
-**Commands:**
+**via commands**
 
 ```bash
-python media_scraper.py scan https://example.com      # crawl and list, saves media.json
-python media_scraper.py list --types image,pdf        # re-show saved results
-python media_scraper.py download                      # download everything
-python media_scraper.py download --types video,audio  # only certain types
-python media_scraper.py download --select 1,4,10-20   # only these list numbers
+python3 media_scraper.py scan https://example.com      # crawl and list, saves media.json
+python3 media_scraper.py list --types image,pdf        # re-show saved results
+python3 media_scraper.py download                      # download everything
+python3 media_scraper.py download --types video,audio  # only certain types
+python3 media_scraper.py download --select 1,4,10-20   # only these list numbers
 ```
 
 Because `scan` saves `media.json`, you can run `download` later without crawling again.
@@ -65,10 +67,19 @@ Existing files are skipped, so re-running only fetches what's missing. Name coll
 
 ## Limitations
 
-- **JavaScript-rendered pages:** media added by JS won't be seen. Use Playwright, or look for a JSON API in your browser's Network tab.
-- **Embedded players** (YouTube, Vimeo) and **streams** (`.m3u8`) aren't downloadable as plain files. Use a tool like `yt-dlp`.
-- Only crawls the starting site's domain (media on other domains is still listed unless `--same-site-only` is set).
+- Media added by JS won't be seen. Use Playwright, or look for a JSON API in your browser's Network tab.
+- Embedded players (YouTube, Vimeo etc) and streams (`.m3u8`) aren't downloadable as plain files. Something like `yt-dlp` would probably be more apt. 
+- Crawl scope: only pages on the starting domain are visited (`www.` is ignored; other subdomains like `blog.example.com` are not followed).
+- Media scope: files hosted elsewhere, such as a CDN, are still listed. Use `--same-site-only` to keep only files on the starting domain.
 
 ## be nice!
 
 The scraper respects `robots.txt`, rate-limits requests and identifies itself. Check a site's terms of service before bulk-downloading, as much online media is copyrighted.
+
+## Contributing
+
+Bug reports and pull requests are welcome at [github.com/user/scraper](https://github.com/stealth-exe/scraper). Please [open an issue](https://github.com/stealth-exe/scraper/issues) first for larger changes.
+
+## License
+
+See [LICENSE](https://github.com/stealth-exe/scraper/blob/main/LICENSE).
