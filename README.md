@@ -78,7 +78,7 @@ The scraper respects `robots.txt`, rate-limits requests and identifies itself. C
 
 ## Contributing
 
-Bug reports and pull requests are welcome at [github.com/user/scraper](https://github.com/stealth-exe/scraper). Please [open an issue](https://github.com/stealth-exe/scraper/issues) first for larger changes.
+Bug reports and pull requests are welcome at [github.com/stealth-exe/scraper](https://github.com/stealth-exe/scraper). Please [open an issue](https://github.com/stealth-exe/scraper/issues) first for larger changes.
 
 ## License
 
